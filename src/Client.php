@@ -1,27 +1,27 @@
 <?php
     class Client
     {
-        private $name;
+        private $client_name;
         private $stylist_id;
         private $appointment;
         private $id;
 
-        function __construct($name, $stylist_id, $appointment, $id = null)
+        function __construct($client_name, $stylist_id, $appointment, $id = null)
         {
-            $this->name = $name;
+            $this->client_name = $client_name;
             $this->stylist_id = $stylist_id;
             $this->appointment = $appointment;
             $this->id = $id;
         }
 
-        function setName($new_name)
+        function setClient($new_client_name)
         {
-            $this->name = (string) $new_name;
+            $this->client_name = (string) $new_client_name;
         }
 
         function getName()
         {
-            return $this->name;
+            return $this->client_name;
         }
 
         function getStylistId()
