@@ -12,6 +12,15 @@
     $DB = new PDO($server, $username, $password);
     class StylistTest extends PHPUnit_Framework_TestCase
     {
+        function testGetName()
+        {
+            $name = "Fred Fekkai";
+            $test_stylist = new Stylist($name);
+
+            $result = $test_stylist->getName();
+
+            $this->assertEquals($name, $result);
+        }
 
     }
 ?>
