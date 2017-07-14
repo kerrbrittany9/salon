@@ -28,5 +28,27 @@
             $this->assertTrue($executed, "Client was not saved to database");
         }
 
+        function testGetAll()
+        {
+            $name = "Dolly";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $client_name = "Billy Bob";
+            $appointment = "September 3";
+            $client_name2 = "Patsy";
+            $appointment2 = "Oct 14";
+            $test_client = new Client($client_name, $stylist_id, $appointment);
+            $test_client->save();
+            $test_client2 = new Client($client_name2, $stylist_id, $appointment2);
+            $test_client2->save();
+
+            $result = Client::getAll();
+
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
+
+
     }
 ?>
