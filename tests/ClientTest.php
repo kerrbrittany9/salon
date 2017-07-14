@@ -19,7 +19,7 @@
             Client::deleteAll();
             Stylist::deleteAll();
         }
-        
+
         function testSave()
         {
             $name = "Mickey Mouse";
@@ -77,7 +77,20 @@
             $this->assertEquals([], $result);
         }
 
+        function testGetId()
+        {
+            $name = "Don Trump Jr";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
 
+            $client_name = "Kelly";
+            $appointment = "Oct 1, 11am";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($client_name, $stylist_id, $appointment);
+            $test_client->save();
+            $result = $test_client->getId();
+            $this->assertTrue(is_numeric($result));
+        }
 
     }
 ?>
