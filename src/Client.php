@@ -14,6 +14,31 @@
             $this->id = $id;
         }
 
+        function setName($new_name)
+        {
+            $this->name = (string) $new_name;
+        }
+
+        function getName()
+        {
+            return $this->name;
+        }
+
+        function getStylistId()
+        {
+            return $this->stylist_id;
+        }
+
+        function getAppointment()
+        {
+          return $this->appointment;
+        }
+
+        function getId()
+        {
+            return $this->id;
+        }
+
 
     }
 
