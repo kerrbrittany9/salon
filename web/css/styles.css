@@ -1,0 +1,11 @@
+body {
+    background-color: beige;
+    color: cadetblue;
+    text-align: center;
+}
+.jumbotron {
+    background-color: antiquewhite;
+}
+ul {
+    list-style-type: none;
+}
