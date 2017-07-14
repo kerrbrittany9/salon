@@ -22,6 +22,15 @@
             return $this->name;
         }
 
+        function save()
+        {
+            $executed = $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getName()}');");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
     }
 

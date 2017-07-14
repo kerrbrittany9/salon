@@ -10,6 +10,7 @@
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
+
     class StylistTest extends PHPUnit_Framework_TestCase
     {
         function testGetName()
@@ -20,6 +21,17 @@
             $result = $test_stylist->getName();
 
             $this->assertEquals($name, $result);
+        }
+
+        function testSave()
+        {
+            $name = "Vidal Sasson";
+
+            $test_stylist = new Stylist($name);
+            $executed = $test_stylist->save();
+
+            $this->assertTrue($executed, "Stylist was not saved to database");
+
         }
 
     }
