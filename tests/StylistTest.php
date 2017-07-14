@@ -34,5 +34,17 @@
 
         }
 
+        function testGetAll()
+        {
+            $name = "J Frieda";
+            $name2 = "Fred Fekkai";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+            $result = Stylist::getAll();
+            $this->assertEquals([$test_stylist, $test_stylist2], $result);
+        }
+
     }
 ?>

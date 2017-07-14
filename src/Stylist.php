@@ -31,6 +31,10 @@
                 return false;
             }
         }
+        static function getAll()
+        {
+            
+        }
 
     }
 
