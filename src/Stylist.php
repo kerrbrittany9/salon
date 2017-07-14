@@ -26,14 +26,24 @@
         {
             $executed = $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getName()}');");
             if ($executed) {
+                $this->id = $GLOBALS['DB']->lastInsertId();
                 return true;
             } else {
                 return false;
             }
         }
+
         static function getAll()
         {
-            
+           $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
+           $stylists = array();
+           foreach($returned_stylists as $stylist) {
+               $stylist_name = $stylist['type'];
+               $stylist_id = $stylist['id'];
+               $new_stylist = new Stylist($stylist_name, $stylist_id );
+               array_push($stylists, $new_stylist);
+           }
+           return $stylists;
         }
 
     }
