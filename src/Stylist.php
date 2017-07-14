@@ -45,7 +45,7 @@
            foreach($returned_stylists as $stylist) {
                $stylist_name = $stylist['name'];
                $stylist_id = $stylist['id'];
-               $new_stylist = new Stylist($stylist_name, $stylist_id );
+               $new_stylist = new Stylist($stylist_name, $stylist_id);
                array_push($stylists, $new_stylist);
            }
            return $stylists;
@@ -71,7 +71,17 @@
 
         function getClients()
         {
-            
+            $clients = array();
+            $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()};");
+            foreach($returned_clients as $client) {
+                $client_name = $client['client_name'];
+                $stylist_id = $client['stylist_id'];
+                $appointment = $client['appointment'];
+                $client_id = $client['id'];
+                $new_client = new Client($client_name, $stylist_id, $appointment, $client_id);
+                array_push($clients, $new_client);
+            }
+            return $clients;
         }
 
     }

@@ -87,7 +87,7 @@
             $test_client2 = new Client($client_name2, $stylist_id, $appointment2);
             $test_client2->save();
             $result = $test_stylist->getClients();
-            $this->assertEquals([$test_client, $test_restaurant2], $result);
+            $this->assertEquals([$test_client, $test_client2], $result);
         }
     }
 ?>
