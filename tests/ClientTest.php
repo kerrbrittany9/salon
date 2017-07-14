@@ -30,7 +30,9 @@
             $appointment = "July 25";
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($client_name, $stylist_id, $appointment);
+
             $executed = $test_client->save();
+
             $this->assertTrue($executed, "Client was not saved to database");
         }
 
@@ -88,8 +90,49 @@
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($client_name, $stylist_id, $appointment);
             $test_client->save();
+
             $result = $test_client->getId();
+
             $this->assertTrue(is_numeric($result));
+        }
+
+        function testGetStylistId()
+        {
+            $name = "Kim Kimble";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+
+            $client_name = "Moby";
+            $appointment = "August 6, 3pm";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($client_name, $stylist_id, $appointment);
+            $test_client->save();
+
+            $result = $test_client->getStylistId();
+
+            $this->assertEquals($stylist_id, $result);
+        }
+
+        function testFind()
+        {
+            $name = "Tabatha Coffey";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $client_name = "Mary";
+            $appointment = "Aug 1";
+            $client_name2 = "Jen";
+            $appointment2 = "Feb 15";
+            $test_client = new Client($client_name, $stylist_id, $appointment);
+            $test_client->save();
+            $test_client2 = new Client($client_name2, $stylist_id, $appointment2);
+            $test_client2->save();
+            
+            $id = $test_client->getId();
+            $result = Client::find($id);
+
+            $this->assertEquals($test_client, $result);
         }
 
     }

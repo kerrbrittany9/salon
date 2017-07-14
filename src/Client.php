@@ -63,13 +63,28 @@
             }
             return $clients;
         }
-        
+
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM clients;");
         }
 
+        static function find($search_id)
+        {
+            $returned_clients = $GLOBALS['DB']->prepare("SELECT * FROM clients WHERE id = :id");
+            $returned_clients->bindParam(':id', $search_id, PDO::PARAM_STR);
+            $returned_clients->execute();
+            foreach($returned_clients as $client) {
+               $client_name = $client['client_name'];
+               $stylist_id = $client['stylist_id'];
+               $appointment = $client['appointment'];
+               $client_id = $client['id'];
+               if ($client_id == $search_id) {
+                   $new_client = new Client($client_name, $stylist_id, $appointment, $client_id);
+               }
+           }
+           return $new_client;
+        }
     }
-
 
 ?>
