@@ -45,6 +45,10 @@
            }
            return $stylists;
         }
+        static function deleteAll()
+        {
+            
+        }
 
     }
 
