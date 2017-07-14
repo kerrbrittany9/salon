@@ -14,12 +14,12 @@
             $this->id = $id;
         }
 
-        function setClient($new_client_name)
+        function setClientName($new_client_name)
         {
             $this->client_name = (string) $new_client_name;
         }
 
-        function getName()
+        function getClientName()
         {
             return $this->client_name;
         }
@@ -40,7 +40,13 @@
         }
         function save()
         {
-            
+            $executed = $GLOBALS['DB']->exec("INSERT INTO clients (client_name, stylist_id, appointment) VALUES ('{$this->getClientName()}', {$this->getStylistId()}, '{$this->getAppointment()}');");
+           if ($executed) {
+               $this->id = $GLOBALS['DB']->lastInsertId();
+               return true;
+           } else {
+               return false;
+           }
         }
 
     }
