@@ -22,10 +22,6 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    $app->get("/clients", function() use ($app) {
-        return $app['twig']->render('clients.html.twig', array('clients' => Client::getAll()));
-    });
-
     $app->get("/client/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
         return $app['twig']->render('clients.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
@@ -61,9 +57,9 @@
 
     });
 
-    $app->post("/delete_stylists", function() use ($app) {
+    $app->post("/delete", function() use ($app) {
         Stylist::deleteAll();
-        return $app['twig']->render('index.html.twig');
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll());
     });
 
     return $app;
