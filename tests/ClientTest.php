@@ -128,12 +128,24 @@
             $test_client->save();
             $test_client2 = new Client($client_name2, $stylist_id, $appointment2);
             $test_client2->save();
-            
+
             $id = $test_client->getId();
             $result = Client::find($id);
 
             $this->assertEquals($test_client, $result);
         }
 
+        function testUpdate()
+        {
+            $client_name = "katie";
+            $appointment = "July 4";
+            $test_client = new Client($name, $stylist_id, $appointment);
+            $test_client->save();
+
+            $new_appointment = "July 5";
+            $test_client->update($new_appointment);
+
+            $this->assertEquals("July 5", $test_client->getAppointment());
+        }
     }
 ?>

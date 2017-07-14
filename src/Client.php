@@ -19,6 +19,11 @@
             $this->client_name = (string) $new_client_name;
         }
 
+        function setAppointment($new_appointment)
+        {
+            $this->appointment = (string) $new_appointment;
+        }
+
         function getClientName()
         {
             return $this->client_name;
@@ -84,6 +89,17 @@
                }
            }
            return $new_client;
+        }
+
+        function update($new_appointment)
+        {
+            $executed = $GLOBALS['DB']->exec("UPDATE clients SET appointment = '{$new_appointment}' WHERE id = {$this->getId()};");
+            if ($executed) {
+               $this->setAppointment($new_appointment);
+               return true;
+            } else {
+               return false;
+            }
         }
     }
 
