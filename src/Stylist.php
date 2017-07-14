@@ -69,6 +69,10 @@
             $this->assertEquals($test_cuisine, $result);
         }
 
+        function getClients()
+        {
+            
+        }
 
     }
 
