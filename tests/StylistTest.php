@@ -17,6 +17,7 @@
         protected function tearDown()
         {
             Stylist::deleteAll();
+            Client::deleteAll();
         }
 
         function testGetName()
@@ -118,17 +119,34 @@
 
         function testDelete()
         {
-            $name = "joe";
+            $name = "Joe";
             $test_stylist = new Stylist($name);
             $test_stylist->save();
 
-            $name = "Hawaian";
-            $test_stylist2 = new Stylist($name);
+            $name_2 = "Hawaii Joe";
+            $test_stylist2 = new Stylist($name_2);
             $test_stylist2->save();
 
             $test_stylist->delete();
+
             $this->assertEquals([$test_stylist2], Stylist::getAll());
         }
 
+        function testDeleteCategoryTasks()
+        {
+            $name = "Jimmy";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+
+            $client_name = "Kay";
+            $appointment = "Aug 1";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($client_name, $appointment, $stylist_id);
+            $test_client->save();
+
+            $test_stylist->delete();
+
+            $this->assertEquals([], Client::getAll());
+        }
     }
 ?>

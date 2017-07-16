@@ -90,12 +90,12 @@
         function update($new_name)
         {
             $executed = $GLOBALS['DB']->exec("UPDATE stylists SET name = '{$new_name}' WHERE id = {$this->getId()};");
-           if ($executed) {
+            if ($executed) {
                $this->setName($new_name);
                return true;
-           } else {
+            } else {
                return false;
-           }
+            }
 
         }
 
@@ -110,7 +110,7 @@
                 return false;
             } else {
                 return true;
-       }
+            }
 
         }
 

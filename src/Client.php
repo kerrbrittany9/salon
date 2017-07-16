@@ -91,16 +91,16 @@
            return $new_client;
         }
 
-        function update($new_appointment)
-        {
-            $executed = $GLOBALS['DB']->exec("UPDATE clients SET appointment = '{$new_appointment}' WHERE id = {$this->getId()};");
-            if ($executed) {
-               $this->setAppointment($new_appointment);
-               return true;
-            } else {
-               return false;
-            }
-        }
+        // function update($new_appointment)
+        // {
+        //     $executed = $GLOBALS['DB']->exec("UPDATE clients SET appointment = '{$new_appointment}' WHERE id = {$this->getId()};");
+        //     if ($executed) {
+        //        $this->setAppointment($new_appointment);
+        //        return true;
+        //     } else {
+        //        return false;
+        //     }
+        // }
     }
 
 ?>
