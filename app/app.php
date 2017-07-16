@@ -22,12 +22,12 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    $app->get("/client/{id}", function($id) use ($app) {
+    $app->get("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('clients.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
-    $app->post("/", function() use ($app) {
+    $app->post("/stylists", function() use ($app) {
         $stylist = new Stylist($_POST['name']);
         $stylist->save();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
@@ -35,7 +35,7 @@
 
 
     $app->post("/clients", function() use ($app) {
-        $client_name = $_POST['input_name'];
+        $client_name = $_POST['client_name'];
         $stylist_id = $_POST['stylist_id'];
         $appointment = $_POST['appointment'];
         $client = new Client($_POST['client_name'], $_POST['stylist_id'], $_POST['appointment']);
@@ -44,12 +44,12 @@
         return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
-    $app->get("/stylist/{id}/edit", function($id) use ($app) {
+    $app->get("/stylists/{id}/edit", function($id) use ($app) {
         $stylist = Stylist::find($id);
         return $app['twig']->render('stylist_edit.html.twig', array('stylist' => $stylist));
    });
 
-    $app->patch("/stylist/{id}", function($id) use ($app) {
+    $app->patch("/stylists/{id}", function($id) use ($app) {
         $name = $_POST['name'];
         $stylist = Stylist::find($id);
         $stylist->update($name);
@@ -57,10 +57,10 @@
 
     });
 
-    $app->post("/delete", function() use ($app) {
-        Stylist::deleteAll();
-        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll());
-    });
+    // $app->post("/delete", function() use ($app) {
+    //     Stylist::deleteAll()
+    //     return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll());
+    // });
 
     return $app;
 ?>

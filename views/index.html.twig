@@ -12,19 +12,19 @@
       </div>
 
       <h1>Add Stylist</h1>
-      <form action="/" method="post">
+      <form action="/stylists" method="post">
         <label for="name">Stylist</label>
         <input id="name" name="name" type="text">
 
         <button type="submit">add</button>
       </form>
-     
+
 
       {% if stylists is not empty %}
         <p>stylists listed on staff:</p>
         <ul>
           {% for stylist in stylists %}
-            <li><a href="/clients/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+            <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
           {% endfor %}
         </ul>
       {% else %}

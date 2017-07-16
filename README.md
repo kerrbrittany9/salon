@@ -20,13 +20,13 @@ _This PHP database exercise allows the user to pretend they own a salon. The use
   * Type "git clone [add above URL]".
   * Type "cd salon" to enter directory.
   * Download dependencies by typing "composer install" in console.
-* In browser type "localhost:8888/phpmyadmin"
-  * Click 'import' tab and choose file 'hair_salon.sql' to import database.
 * Open preferences>ports on MAMP and verify that Apache Port is 8888.
 * Go to preferences>web server and click the file folder next to document root.
   * Click web folder and hit select.
   * Click ok at the bottom of preferences.
   * Click start server.
+* In browser type "localhost:8888/phpmyadmin"
+  * Click 'import' tab, choose file 'hair_salon.sql' and select 'go' to import database.
 * In your browser, type 'localhost:8888' to view the webpage.
 * Type a stylist name in input field to get started.
 

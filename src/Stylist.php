@@ -56,17 +56,20 @@
             $GLOBALS['DB']->exec("DELETE FROM stylists;");
         }
 
-        function testFind()
+        static function find($search_id)
         {
-            $type = "thai food";
-            $type2 = "mexican food";
-            $test_cuisine = new Cuisine($type);
-            $test_cuisine->save();
-            $test_cuisine2 = new Cuisine($type2);
-            $test_cuisine2->save();
-            $id = $test_cuisine->getId();
-            $result = Cuisine::find($id);
-            $this->assertEquals($test_cuisine, $result);
+            $found_stylist = null;
+            $returned_stylists = $GLOBALS['DB']->prepare("SELECT * FROM stylists WHERE id = :id");
+            $returned_stylists->bindParam(':id', $search_id, PDO::PARAM_STR);
+            $returned_stylists->execute();
+            foreach($returned_stylists as $stylist) {
+                $stylist_name = $stylist['name'];
+                $stylist_id = $stylist['id'];
+                if ($stylist_id == $search_id) {
+                  $found_stylist = new Stylist($stylist_name, $stylist_id);
+                }
+            }
+            return $found_stylist;
         }
 
         function getClients()

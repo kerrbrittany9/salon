@@ -69,7 +69,20 @@
             $result = Stylist::getAll();
 
             $this->assertEquals([], $result);
-       }
+        }
+
+        function testFind()
+        {
+            $name = "Oribe";
+            $name2 = "J Redding";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+            $id = $test_stylist->getId();
+            $result =Stylist::find($id);
+            $this->assertEquals($test_stylist, $result);
+        }
 
         function testGetClients()
         {
@@ -112,7 +125,7 @@
             $name = "Hawaian";
             $test_stylist2 = new Stylist($name);
             $test_stylist2->save();
-            
+
             $test_stylist->delete();
             $this->assertEquals([$test_stylist2], Stylist::getAll());
         }
