@@ -149,9 +149,31 @@
 
             $new_appointment = "July 5";
             $test_client->update($new_appointment);
-          
+
 
             $this->assertEquals("July 5", $test_client->getAppointment());
         }
+
+        function testDelete()
+        {
+            $name = "Cynthia";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $client_name = "chuck";
+            $appointment = "Oct 25";
+            $test_client = new Client($client_name, $stylist_id, $appointment);
+            $test_client->save();
+            $client_name_2 = "josh";
+            $appointment_2 = "Aug 17";
+            $test_client_2 = new Client($client_name_2, $stylist_id, $appointment_2);
+            $test_client_2->save();
+
+            $test_client->delete();
+
+            $this->assertEquals([$test_client_2], Client::getAll());
+        }
+
     }
 ?>
