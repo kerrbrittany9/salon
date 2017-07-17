@@ -10,16 +10,16 @@
 
     <form action="/clients/{{ client.getId }}" method="post">
       <input name="_method" type="hidden" value="patch">
-      <label for="client_name">Edit client's name:</label>
-      <input id="client_name" name="client_name" type="text">
+      <label for="appointment">Edit client's appointment:</label>
+      <input id="appointment" name="appointment" type="text">
 
-      <button type="submit">Update</button>
+      <button type="submit">Update</button><br>
     </form>
 
     <form action="/clients/{{ client.getId }}" method="post">
       <input name="_method" type="hidden" value="delete">
 
-      <button type="submit">Delete Client</button>
+      <button type="submit">Delete Client</button><br>
     </form>
   </body>
 </html>

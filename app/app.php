@@ -75,7 +75,7 @@
     });
 
     $app->patch('/clients/{id}', function($id) use ($app) {
-        $client_name = $_POST['client_name'];
+        $client_name = $_POST['name'];
         $appointment = $_POST['appointment'];
         $client = Client::find($id);
         $client->update($appointment);
@@ -85,6 +85,12 @@
     $app->post("/delete_clients", function() use ($app) {
       Client::deleteAll();
       return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    $app->delete('/clients/{id}', function($id) use ($app) {
+        $client = Client::find($id);
+        $client->delete();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
     return $app;
