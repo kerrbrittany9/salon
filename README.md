@@ -26,13 +26,13 @@ _This PHP database exercise allows the user to pretend they own a salon. The use
   * Click ok at the bottom of preferences.
   * Click start server.
 * In browser type "localhost:8888/phpmyadmin"
-  * Click 'import' tab, choose file 'hair_salon.sql' and select 'go' to import database.
+  * Click 'import' tab, choose file 'localhost.sql.zip' and select 'go' to import database.
 * In your browser, type 'localhost:8888' to view the webpage.
 * Type a stylist name in input field to get started.
 
 ## Known Bugs
 
-The program does successfully link the user to the stylist's clients or landing page where they can edit or delete input.
+The program does not run the course of dynamic routes several times over successfully without the need to refresh the page.
 
 ## Specifications
 ```
