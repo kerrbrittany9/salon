@@ -135,17 +135,23 @@
             $this->assertEquals($test_client, $result);
         }
 
-        // function testUpdate()
-        // {
-        //     $client_name = "katie";
-        //     $appointment = "July 4";
-        //     $test_client = new Client($client_name, $appointment, $stylist_id);
-        //     $test_client->save();
-        //
-        //     $new_appointment = "July 5";
-        //     $test_client->update($new_appointment);
-        //
-        //     $this->assertEquals("July 5", $test_client->getAppointment());
-        // }
+        function testUpdate()
+        {
+            $name = "Alvin";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+
+            $client_name = "katie";
+            $appointment = "July 4";
+            $test_client = new Client($client_name, $stylist_id, $appointment);
+            $test_client->save();
+
+            $new_appointment = "July 5";
+            $test_client->update($new_appointment);
+          
+
+            $this->assertEquals("July 5", $test_client->getAppointment());
+        }
     }
 ?>

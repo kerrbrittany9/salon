@@ -24,7 +24,7 @@
         <p>stylists listed on staff:</p>
         <ul>
           {% for stylist in stylists %}
-            <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+            <h4><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></h4>
           {% endfor %}
         </ul>
       {% else %}

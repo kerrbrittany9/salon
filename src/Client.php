@@ -47,10 +47,10 @@
         {
             $executed = $GLOBALS['DB']->exec("INSERT INTO clients (client_name, stylist_id, appointment) VALUES ('{$this->getClientName()}', {$this->getStylistId()}, '{$this->getAppointment()}');");
            if ($executed) {
-               $this->id = $GLOBALS['DB']->lastInsertId();
-               return true;
+                $this->id = $GLOBALS['DB']->lastInsertId();
+                return true;
            } else {
-               return false;
+                return false;
            }
         }
 
@@ -80,27 +80,27 @@
             $returned_clients->bindParam(':id', $search_id, PDO::PARAM_STR);
             $returned_clients->execute();
             foreach($returned_clients as $client) {
-               $client_name = $client['client_name'];
-               $stylist_id = $client['stylist_id'];
-               $appointment = $client['appointment'];
-               $client_id = $client['id'];
-               if ($client_id == $search_id) {
-                   $new_client = new Client($client_name, $stylist_id, $appointment, $client_id);
+                $client_name = $client['client_name'];
+                $stylist_id = $client['stylist_id'];
+                $appointment = $client['appointment'];
+                $client_id = $client['id'];
+                if ($client_id == $search_id) {
+                    $new_client = new Client($client_name, $stylist_id, $appointment, $client_id);
                }
            }
            return $new_client;
         }
 
-        // function update($new_appointment)
-        // {
-        //     $executed = $GLOBALS['DB']->exec("UPDATE clients SET appointment = '{$new_appointment}' WHERE id = {$this->getId()};");
-        //     if ($executed) {
-        //        $this->setAppointment($new_appointment);
-        //        return true;
-        //     } else {
-        //        return false;
-        //     }
-        // }
+        function update($new_appointment)
+        {
+            $executed = $GLOBALS['DB']->exec("UPDATE clients SET appointment = '{$new_appointment}' WHERE id = {$this->getId()};");
+            if ($executed) {
+               $this->setAppointment($new_appointment);
+               return true;
+            } else {
+               return false;
+            }
+        }
     }
 
 ?>

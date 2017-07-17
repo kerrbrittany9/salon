@@ -96,7 +96,6 @@
             } else {
                return false;
             }
-
         }
 
         function delete()
